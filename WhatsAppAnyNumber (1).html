@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Direct Message</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 320px;
+        }
+        h2 {
+            color: #075e54;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px 10px;
+            background: #fff;
+        }
+        .prefix {
+            font-weight: bold;
+            color: #555;
+            margin-right: 5px;
+        }
+        input[type="tel"] {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #128c7e;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>WhatsApp any unsaved number in India</h2>
+    
+    <div class="input-group">
+        <span class="prefix">+91</span>
+        <input type="tel" id="mobileNumber" placeholder="Enter 10-digit number" maxlength="30">
+    </div>
+    
+    <button onclick="sendWhatsApp()">Open Chat</button>
+</div>
+
+<script>
+function sendWhatsApp() {
+    // 1. Grab the raw input value
+    const rawInput = document.getElementById('mobileNumber').value;
+    
+    // 2. Remove ALL non-numeric characters (spaces, +, dashes, letters)
+    const allDigits = rawInput.replace(/[^0-9]/g, '');
+    
+    // 3. Extract ONLY the last 10 digits
+    const cleanNumber = allDigits.slice(-10);
+    
+    // 4. Validate that we actually got 10 digits
+    if (cleanNumber.length !== 10) {
+        alert('Please enter a valid mobile number with at least 10 digits.');
+        return;
+    }
+    
+    // 5. Prepend Indian country code (91) and open WhatsApp
+    const whatsappUrl = "https://wa.me" + cleanNumber;
+    window.open(whatsappUrl, '_blank');
+}
+</script>
+
+</body>
+</html>
